@@ -1,0 +1,201 @@
+/* Modern color palette */
+:root {
+  --coffee-primary: #5C3A2E;    /* Deep Brown - primary color */
+  --coffee-secondary: #DAA06D;  /* Caramel - accent color */
+  --coffee-tertiary: #8B593E;   /* Medium Brown - complementary */
+  --coffee-dark: #3A2418;       /* Dark Brown - dark shade */
+  --coffee-black: #1E1412;      /* Almost Black - extra dark */
+  --coffee-light: #F8F4E3;      /* Cream - light background */
+  --coffee-muted: #E6DED1;      /* Muted Beige - subtle accent */
+}
+
+/* Global Styles */
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #333;
+  background-color: var(--coffee-light);
+}
+
+/* Fancy link hover effects */
+a.fancy-link {
+  position: relative;
+  color: var(--coffee-primary);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+a.fancy-link::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  bottom: -2px;
+  left: 0;
+  background-color: var(--coffee-secondary);
+  transform: scaleX(0);
+  transform-origin: bottom right;
+  transition: transform 0.3s;
+}
+
+a.fancy-link:hover {
+  color: var(--coffee-tertiary);
+}
+
+a.fancy-link:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+/* Button styles */
+.btn-primary {
+  background-color: var(--coffee-primary);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 9999px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: var(--coffee-tertiary);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(92, 58, 46, 0.15);
+}
+
+.btn-secondary {
+  background-color: var(--coffee-secondary);
+  color: var(--coffee-dark);
+  padding: 0.75rem 1.5rem;
+  border-radius: 9999px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+  background-color: #e8b382;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(218, 160, 109, 0.2);
+}
+
+.btn-outline {
+  background-color: transparent;
+  color: var(--coffee-primary);
+  border: 2px solid var(--coffee-primary);
+  padding: 0.75rem 1.5rem;
+  border-radius: 9999px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.btn-outline:hover {
+  background-color: var(--coffee-primary);
+  color: white;
+}
+
+/* Card styles */
+.card {
+  background-color: white;
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+}
+
+/* Image hover effects */
+.img-zoom-container {
+  overflow: hidden;
+  border-radius: 0.5rem;
+}
+
+.img-zoom {
+  transition: transform 0.7s ease;
+}
+
+.img-zoom:hover {
+  transform: scale(1.1);
+}
+
+/* Spinner for loading states */
+.spinner {
+  border: 4px solid rgba(218, 160, 109, 0.3);
+  border-radius: 50%;
+  border-top: 4px solid var(--coffee-primary);
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  margin: 0 auto;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Badge styles */
+.badge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.badge-primary {
+  background-color: var(--coffee-primary);
+  color: white;
+}
+
+.badge-secondary {
+  background-color: var(--coffee-secondary);
+  color: var(--coffee-dark);
+}
+
+/* Typography enhancements */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--coffee-dark);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.heading-accent {
+  position: relative;
+  display: inline-block;
+}
+
+.heading-accent::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -10px;
+  height: 4px;
+  width: 60px;
+  background-color: var(--coffee-secondary);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--coffee-tertiary);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--coffee-primary);
+}
