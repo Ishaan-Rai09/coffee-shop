@@ -1,4 +1,4 @@
-import express, { Express, Request, Response } from 'express';
+import express, { Express } from 'express';
 import mongoose from 'mongoose';
 import cors from 'cors';
 import dotenv from 'dotenv';
@@ -14,32 +14,10 @@ dotenv.config();
 const app: Express = express();
 const PORT = process.env.PORT || 5000;
 
-// CORS configuration for production
-const corsOptions = {
-  origin: process.env.NODE_ENV === 'production' 
-    ? [
-        'https://coffee-shop-lemon-nine.vercel.app', // Main production domain
-        'https://ruhani-coffee-shop.vercel.app',     // Alternative domain
-        'https://*.vercel.app',                      // Allows all Vercel subdomains during testing
-        ...(process.env.FRONTEND_URL ? [process.env.FRONTEND_URL] : []), // Dynamic frontend URL if defined
-      ].filter(Boolean) // Filter out any undefined values
-    : '*', // Allow all origins in development
-  credentials: true
-};
-
 // Middleware
-app.use(cors(corsOptions));
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
-// Root route for API health check
-app.get('/', (_req: Request, res: Response) => {
-  res.json({ 
-    message: 'Coffee Shop API is running',
-    environment: process.env.NODE_ENV || 'development',
-    timestamp: new Date().toISOString()
-  });
-});
 
 // Routes
 app.use('/api/products', productRoutes);

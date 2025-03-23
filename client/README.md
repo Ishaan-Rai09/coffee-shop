@@ -1,55 +1,46 @@
-# Ruhani Coffee Shop Frontend
+# Getting Started with Create React App
 
-React-based frontend for the Ruhani Coffee Shop application.
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Environment Setup
+## Available Scripts
 
-Create a `.env` file in the root directory with the following variables if needed:
+In the project directory, you can run:
 
-```
-# Override the default API URL (optional)
-VITE_API_URL=https://your-custom-api-url.com/api
-```
+### `npm start`
 
-## Development
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-```bash
-# Install dependencies
-npm install
+The page will reload if you make edits.\
+You will also see any lint errors in the console.
 
-# Run in development mode
-npm run dev
-```
+### `npm test`
 
-## Production Build
+Launches the test runner in the interactive watch mode.\
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-```bash
-# Build for production
-npm run build
+### `npm run build`
 
-# Preview production build locally
-npm run preview
-```
+Builds the app for production to the `build` folder.\
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
-## Deployment on Vercel
+The build is minified and the filenames include the hashes.\
+Your app is ready to be deployed!
 
-### Setup Instructions
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-1. Connect your GitHub repository to Vercel
-2. Configure the project with these settings:
-   - **Framework Preset**: Vite
-   - **Build Command**: `npm run build`
-   - **Output Directory**: `dist`
-   - **Install Command**: `npm install`
+### `npm run eject`
 
-3. Add the following environment variable if you need to override the default API URL:
-   - `VITE_API_URL`: Your custom API URL (e.g., https://your-api-url.com/api)
+**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-4. Deploy the site
+If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-### Important Notes
+Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-- The frontend is configured to automatically use the production API URL when deployed
-- The default production API URL is set to `https://ruhani-coffee-api.onrender.com/api`
-- You only need to set `VITE_API_URL` if you want to use a different API URL than the default
-- Make sure your API's CORS settings allow requests from your Vercel domain
+You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+
+## Learn More
+
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+
+To learn React, check out the [React documentation](https://reactjs.org/).
