@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { register } from '../services/api';
+import { useDispatch } from 'react-redux';
+import { setUser } from '../state/userSlice';
 
 const RegisterPage: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  const dispatch = useDispatch();
   
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -13,13 +16,14 @@ const RegisterPage: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   
-  const redirect = location.search ? location.search.split('=')[1] : '/';
+  // Extract redirect path from URL or use '/' as default
+  const redirect = location.search ? new URLSearchParams(location.search).get('redirect') || '/' : '/';
 
   useEffect(() => {
     // Check if user is already logged in
     const userInfo = localStorage.getItem('userInfo');
     if (userInfo) {
-      navigate(redirect);
+      navigate(redirect === '' ? '/' : redirect);
     }
   }, [navigate, redirect]);
 
@@ -39,8 +43,13 @@ const RegisterPage: React.FC = () => {
     try {
       setLoading(true);
       setError(null);
-      await register(name, email, password);
-      navigate(redirect);
+      const userData = await register(name, email, password);
+      
+      // Set user in Redux store
+      dispatch(setUser(userData));
+      
+      // Force redirect to home page to fix 404 issue
+      navigate('/');
     } catch (err: any) {
       setError(err.response?.data?.message || 'Registration failed. Please try again.');
     } finally {

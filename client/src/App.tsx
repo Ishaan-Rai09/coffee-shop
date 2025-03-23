@@ -39,26 +39,35 @@ const App: React.FC = () => {
         const userInfoString = localStorage.getItem('userInfo');
         
         if (userInfoString) {
-          // If userInfo exists, parse it and set user in Redux
-          const userInfo = JSON.parse(userInfoString);
-          
-          if (userInfo && userInfo.token) {
-            // Use API to verify token is still valid
-            try {
-              await checkAuth();
-              dispatch(setUser(userInfo));
-            } catch (authError) {
-              console.error('Token validation failed:', authError);
+          try {
+            // If userInfo exists, parse it and set user in Redux
+            const userInfo = JSON.parse(userInfoString);
+            
+            if (userInfo && userInfo.token) {
+              // Use API to verify token is still valid
+              try {
+                await checkAuth();
+                console.log('Authentication validated successfully');
+                dispatch(setUser(userInfo));
+              } catch (authError) {
+                console.error('Token validation failed, clearing user data:', authError);
+                localStorage.removeItem('userInfo');
+                dispatch(clearUser());
+              }
+            } else {
+              // If userInfo doesn't have token, clear it
+              console.warn('User info found but no token present, clearing user data');
               localStorage.removeItem('userInfo');
               dispatch(clearUser());
             }
-          } else {
-            // If userInfo doesn't have token, clear it
+          } catch (parseError) {
+            console.error('Failed to parse user info from localStorage:', parseError);
             localStorage.removeItem('userInfo');
             dispatch(clearUser());
           }
         } else {
           // No userInfo in localStorage
+          console.log('No user info found in localStorage');
           dispatch(clearUser());
         }
       } catch (error) {

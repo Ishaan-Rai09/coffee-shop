@@ -21,7 +21,7 @@ const LoginPage: React.FC = () => {
     // Check if user is already logged in
     const userInfo = localStorage.getItem('userInfo');
     if (userInfo) {
-      navigate(redirect);
+      navigate(redirect === '' ? '/' : redirect);
     }
   }, [navigate, redirect]);
 
@@ -37,8 +37,12 @@ const LoginPage: React.FC = () => {
       setLoading(true);
       setError(null);
       const userData = await login(email, password);
+      
+      // Set user in Redux store and localStorage (handled in api.ts)
       dispatch(setUser(userData));
-      navigate(redirect);
+      
+      // Force redirect to home page to fix 404 issue
+      navigate('/');
     } catch (err: any) {
       setError(err.response?.data?.message || 'Invalid email or password');
     } finally {

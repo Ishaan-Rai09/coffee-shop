@@ -84,20 +84,40 @@ export const getProductById = async (id: string) => {
 // User API calls
 export const login = async (email: string, password: string) => {
   try {
+    console.log('Attempting login for:', email);
     const { data } = await api.post('/users/login', { email, password });
+    console.log('Login successful, storing user data:', data._id);
+    
+    // Make sure we have a complete user object with token before storing
+    if (!data || !data.token) {
+      throw new Error('Invalid response from server - no token received');
+    }
+    
     localStorage.setItem('userInfo', JSON.stringify(data));
+    console.log('User info saved to localStorage, token available:', !!data.token);
     return data;
   } catch (error: any) {
+    console.error('Login failed:', error.response?.data?.message || error.message);
     throw error;
   }
 };
 
 export const register = async (name: string, email: string, password: string) => {
   try {
+    console.log('Attempting registration for:', email);
     const { data } = await api.post('/users', { name, email, password });
+    console.log('Registration successful, storing user data:', data._id);
+    
+    // Make sure we have a complete user object with token before storing
+    if (!data || !data.token) {
+      throw new Error('Invalid response from server - no token received');
+    }
+    
     localStorage.setItem('userInfo', JSON.stringify(data));
+    console.log('User info saved to localStorage, token available:', !!data.token);
     return data;
   } catch (error: any) {
+    console.error('Registration failed:', error.response?.data?.message || error.message);
     throw error;
   }
 };
