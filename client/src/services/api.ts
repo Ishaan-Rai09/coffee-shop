@@ -2,7 +2,7 @@ import axios from 'axios';
 
 // Determine API URL based on environment variables or environment
 const API_URL = import.meta.env.VITE_API_URL || (import.meta.env.PROD 
-  ? 'https://ruhani-coffee-api.onrender.com/api'  // Production API URL
+  ? 'https://coffee-shop-1.onrender.com/api'  // Production API URL
   : 'http://localhost:5000/api');                // Development API URL
 
 console.log('Using API URL:', API_URL);

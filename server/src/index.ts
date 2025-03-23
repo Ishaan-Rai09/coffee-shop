@@ -18,10 +18,11 @@ const PORT = process.env.PORT || 5000;
 const corsOptions = {
   origin: process.env.NODE_ENV === 'production' 
     ? [
-        'https://coffee-shop-lemon-nine.vercel.app/', // Main production domain
-        'https://*.vercel.app', // Allows all Vercel subdomains during testing
-        process.env.FRONTEND_URL, // Dynamic frontend URL from environment variable
-      ] 
+        'https://coffee-shop-lemon-nine.vercel.app', // Main production domain
+        'https://ruhani-coffee-shop.vercel.app',     // Alternative domain
+        'https://*.vercel.app',                      // Allows all Vercel subdomains during testing
+        ...(process.env.FRONTEND_URL ? [process.env.FRONTEND_URL] : []), // Dynamic frontend URL if defined
+      ].filter(Boolean) // Filter out any undefined values
     : '*', // Allow all origins in development
   credentials: true
 };
